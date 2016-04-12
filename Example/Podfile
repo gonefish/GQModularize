@@ -1,0 +1,16 @@
+source 'https://github.com/gonefish/ModuleSampleRepo.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+target 'GQModularize_Example', :exclusive => true do
+  pod 'GQModularize', :path => '../'
+  pod 'ModuleExampleList'
+  pod 'ModuleExampleSettings'
+end
+
+target 'GQModularize_Tests', :exclusive => true do
+  pod 'GQModularize', :path => '../'
+
+  
+end

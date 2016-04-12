@@ -1,0 +1,24 @@
+PODS:
+  - GQModularize (0.1.0)
+  - GQModule (0.1.1)
+  - ModuleExampleList (0.0.3):
+    - GQModule
+  - ModuleExampleSettings (0.0.1):
+    - GQModule
+
+DEPENDENCIES:
+  - GQModularize (from `../`)
+  - ModuleExampleList
+  - ModuleExampleSettings
+
+EXTERNAL SOURCES:
+  GQModularize:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GQModularize: 492e6f40ed54ab08bd2b7fdf9de75bd005dc08c8
+  GQModule: 555d81b6438f7f0fd28b4ce559e9f29c9e2251a2
+  ModuleExampleList: fe4750cb45972d029894d006914c805c91c3795e
+  ModuleExampleSettings: 9be4f95456829670b113848c5d67afc5a65e94b8
+
+COCOAPODS: 0.39.0
