@@ -9,6 +9,8 @@
 #import "GQAppDelegate.h"
 
 @import GQModularize;
+@import ModuleExampleList;
+@import ModuleExampleSettings;
 
 @implementation GQAppDelegate
 
