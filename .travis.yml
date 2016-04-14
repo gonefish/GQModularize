@@ -2,6 +2,8 @@ language: objective-c
 
 before_install:
     - gem install activesupport -v "4.2.6"
-    - gem install cocoapods
+    - gem install cocoapods -v "0.39.0"
 
-script: xctool -workspace Example/GQModularize.xcworkspace -scheme GQModularize-Example -sdk iphonesimulator test
+script: 
+    - pod install
+    - xctool -workspace Example/GQModularize.xcworkspace -scheme GQModularize-Example -sdk iphonesimulator test
