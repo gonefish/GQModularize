@@ -5,5 +5,5 @@ before_install:
     - gem install cocoapods -v "0.39.0"
 
 script: 
-    - pod install
+    - pod install --project-directory=Example
     - xctool -workspace Example/GQModularize.xcworkspace -scheme GQModularize-Example -sdk iphonesimulator test
