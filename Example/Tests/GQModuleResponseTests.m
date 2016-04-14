@@ -41,19 +41,28 @@
 
 - (void)testConvertObjectToProtocol
 {
+    id object = OCMProtocolMock(@protocol(NSObject));
+    
     GQModule *mockModule = OCMClassMock([GQModule class]);
     
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:object
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response convertObjectToProtocol:@protocol(NSObject)], object);
+    
+    XCTAssertNil([response convertObjectToProtocol:@protocol(NSCopying)]);
 }
 
 - (void)testConvertObjectToExactClass
 {
     UIView *view = [[UIView alloc] init];
+    
     GQModule *mockModule = OCMClassMock([GQModule class]);
     
     GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:view
                                                                    module:mockModule];
     
-    XCTAssertNotNil([response convertObjectToExactClass:[UIView class]]);
+    XCTAssertEqual([response convertObjectToExactClass:[UIView class]], view);
     
     XCTAssertNil([response convertObjectToExactClass:[UIResponder class]]);
 }
@@ -61,14 +70,101 @@
 - (void)testConvertObjectToClass
 {
     UIView *view = [[UIView alloc] init];
+    
     GQModule *mockModule = OCMClassMock([GQModule class]);
     
     GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:view
                                                                    module:mockModule];
     
-    XCTAssertNotNil([response convertObjectToClass:[UIView class]]);
+    XCTAssertEqual([response convertObjectToClass:[UIView class]], view);
     
-    XCTAssertNotNil([response convertObjectToClass:[UIResponder class]]);
+    XCTAssertEqual([response convertObjectToClass:[UIResponder class]], view);
+    
+    XCTAssertNil([response convertObjectToClass:[UITableView class]]);
+}
+
+- (void)testgq_array
+{
+    NSArray *array = [NSArray new];
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:array
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_array], array);
+}
+
+- (void)testgq_dictionary
+{
+    NSDictionary *dictionary = [NSDictionary dictionary];
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:dictionary
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_dictionary], dictionary);
+}
+
+- (void)testgq_set
+{
+    NSSet *set = [NSSet set];
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:set
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_set], set);
+}
+
+- (void)testgq_data
+{
+    NSData *data = [NSData data];
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:data
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_data], data);
+}
+
+- (void)testgq_string
+{
+    NSString *string = [NSString string];
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:string
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_string], string);
+}
+
+- (void)testgq_date
+{
+    NSDate *date = [NSDate date];
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:date
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_date], date);
+}
+
+- (void)testgq_number
+{
+    NSNumber *number = @0;
+    
+    GQModule *mockModule = OCMClassMock([GQModule class]);
+    
+    GQModuleResponse *response = [[GQModuleResponse alloc] initWithObject:number
+                                                                   module:mockModule];
+    
+    XCTAssertEqual([response gq_number], number);
 }
 
 
