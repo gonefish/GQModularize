@@ -1,3 +1,3 @@
 language: objective-c
-xcode_workspace:Example/GQModularize.xcworkspace 
-xcode_scheme:GQModularize_Tests
+xcode_workspace: Example/GQModularize.xcworkspace 
+xcode_scheme: GQModularize_Tests
