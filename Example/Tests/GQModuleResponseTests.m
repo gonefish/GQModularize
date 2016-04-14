@@ -36,7 +36,7 @@
                                                                    module:mockModule];
     
     XCTAssertEqual(response.originalObject, object);
-    XCTAssertEqual(response.responseModule, mockModule);
+    XCTAssertEqual(response.module, mockModule);
 }
 
 - (void)testConvertObjectToProtocol

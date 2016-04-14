@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly, nullable) NSDictionary *options;
 
-@property (nonatomic, strong, readonly) __kindof GQModule *requestModule;
+@property (nonatomic, strong, readonly) __kindof GQModule *module;
 
 - (instancetype)initWithIdentifier:(NSString *)identifier options:(nullable NSDictionary *)options module:(GQModule *)module;
 

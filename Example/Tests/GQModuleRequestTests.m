@@ -39,7 +39,7 @@
     
     XCTAssertEqual(request.identifier, identifier);
     XCTAssertEqual(request.options, options);
-    XCTAssertEqual(request.requestModule, mockModule);
+    XCTAssertEqual(request.module, mockModule);
 }
 
 

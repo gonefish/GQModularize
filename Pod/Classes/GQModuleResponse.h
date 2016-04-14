@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong, readonly, nullable) id originalObject;
 
-@property (nonatomic, strong, readonly, nullable) __kindof GQModule *responseModule;
+@property (nonatomic, strong, readonly, nullable) __kindof GQModule *module;
 
 - (nonnull instancetype)initWithObject:(nullable id)aObject module:(nonnull GQModule *)aModule;
 

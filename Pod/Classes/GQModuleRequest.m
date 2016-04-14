@@ -15,7 +15,7 @@
 
 @property (nonatomic, copy) NSDictionary *options;
 
-@property (nonatomic, strong) GQModule *requestModule;
+@property (nonatomic, strong) GQModule *module;
 
 @end
 
@@ -28,7 +28,7 @@
     if (self) {
         _identifier = identifier;
         _options = options;
-        _requestModule = module;
+        _module = module;
         
     }
     

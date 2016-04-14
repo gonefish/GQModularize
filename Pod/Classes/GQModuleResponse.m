@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) id originalObject;
 
-@property (nonatomic, strong) GQModule *responseModule;
+@property (nonatomic, strong) GQModule *module;
 
 @end
 
@@ -26,7 +26,7 @@
     
     if (self) {
         _originalObject = aObject;
-        _responseModule = aModule;
+        _module = aModule;
     }
     
     return self;
