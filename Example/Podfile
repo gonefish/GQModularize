@@ -11,6 +11,5 @@ end
 
 target 'GQModularize_Tests', :exclusive => true do
   pod 'GQModularize', :path => '../'
-
-  
+  pod 'OCMock'
 end

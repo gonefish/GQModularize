@@ -18,11 +18,12 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9A7B2621FA26EB135FAF4BD2 /* Pods_GQModularize_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D055F859437D4CE8F2DB83 /* Pods_GQModularize_Example.framework */; };
 		BBDEC2A4EAE7B02CC093986C /* Pods_GQModularize_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAFC4E066462A3458EBB5304 /* Pods_GQModularize_Tests.framework */; };
 		E302C49A1CBF442D004C7D6D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E302C4991CBF442D004C7D6D /* Launch Screen.storyboard */; };
+		E34080631CBF6D89009076D3 /* GQModuleRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E34080621CBF6D89009076D3 /* GQModuleRequestTests.m */; };
+		E34080671CBF7611009076D3 /* GQModuleResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E34080661CBF7611009076D3 /* GQModuleResponseTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		64D055F859437D4CE8F2DB83 /* Pods_GQModularize_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GQModularize_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +63,8 @@
 		BCC611A4A3FCB23EB726E94A /* Pods-GQModularize_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQModularize_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GQModularize_Tests/Pods-GQModularize_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C938C509F262B8292048EAF4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E302C4991CBF442D004C7D6D /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E34080621CBF6D89009076D3 /* GQModuleRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQModuleRequestTests.m; sourceTree = "<group>"; };
+		E34080661CBF7611009076D3 /* GQModuleResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQModuleResponseTests.m; sourceTree = "<group>"; };
 		ECCC54C4EA7F458087E8E862 /* GQModularize.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GQModularize.podspec; path = ../GQModularize.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,7 +167,8 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				E34080621CBF6D89009076D3 /* GQModuleRequestTests.m */,
+				E34080661CBF7611009076D3 /* GQModuleResponseTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -398,7 +401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				E34080671CBF7611009076D3 /* GQModuleResponseTests.m in Sources */,
+				E34080631CBF6D89009076D3 /* GQModuleRequestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
