@@ -20,7 +20,7 @@ extern NSString * const GQModulePortalViewControllerIdentifier;
 
 + (instancetype)currentModule;
 
-+ (NSArray *)supportActionIdentifiers;
++ (NSArray<NSString *> *)supportActionIdentifiers;
 
 - (id)performActionWithIdentifier:(NSString *)identifier options:(nullable NSDictionary *)options;
 

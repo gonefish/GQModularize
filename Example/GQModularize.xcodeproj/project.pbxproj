@@ -25,6 +25,7 @@
 		E34080631CBF6D89009076D3 /* GQModuleRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E34080621CBF6D89009076D3 /* GQModuleRequestTests.m */; };
 		E34080671CBF7611009076D3 /* GQModuleResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E34080661CBF7611009076D3 /* GQModuleResponseTests.m */; };
 		E35D3AAD1CBF896600873850 /* GQModuleCenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E35D3AAC1CBF896600873850 /* GQModuleCenterTests.m */; };
+		E3D661041CC0DC7800F69A2F /* GQModuleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D661031CC0DC7800F69A2F /* GQModuleTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		E34080621CBF6D89009076D3 /* GQModuleRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQModuleRequestTests.m; sourceTree = "<group>"; };
 		E34080661CBF7611009076D3 /* GQModuleResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQModuleResponseTests.m; sourceTree = "<group>"; };
 		E35D3AAC1CBF896600873850 /* GQModuleCenterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQModuleCenterTests.m; sourceTree = "<group>"; };
+		E3D661031CC0DC7800F69A2F /* GQModuleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQModuleTests.m; sourceTree = "<group>"; };
+		E3D661051CC0E13800F69A2F /* GQModuleCenter+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQModuleCenter+Private.h"; sourceTree = "<group>"; };
 		ECCC54C4EA7F458087E8E862 /* GQModularize.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GQModularize.podspec; path = ../GQModularize.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,9 +172,11 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E3D661051CC0E13800F69A2F /* GQModuleCenter+Private.h */,
 				E34080621CBF6D89009076D3 /* GQModuleRequestTests.m */,
 				E34080661CBF7611009076D3 /* GQModuleResponseTests.m */,
 				E35D3AAC1CBF896600873850 /* GQModuleCenterTests.m */,
+				E3D661031CC0DC7800F69A2F /* GQModuleTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -407,6 +412,7 @@
 				E34080671CBF7611009076D3 /* GQModuleResponseTests.m in Sources */,
 				E34080631CBF6D89009076D3 /* GQModuleRequestTests.m in Sources */,
 				E35D3AAD1CBF896600873850 /* GQModuleCenterTests.m in Sources */,
+				E3D661041CC0DC7800F69A2F /* GQModuleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
