@@ -10,6 +10,7 @@
 #import "GQModule.h"
 #import "GQModuleMiddleware.h"
 
+NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdateValueKey";
 
 @interface GQModuleCenter ()
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) NSMutableArray<id <GQModuleMiddleware>> *middlewares;
 
 @property (nonatomic, strong) NSMutableDictionary *middlewareMap;
+
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
 
 @end
 
@@ -46,6 +49,8 @@
         _middlewareMap = [NSMutableDictionary dictionary];
         _moduleClassNames = [NSMutableArray array];
         _moduleActionIdentifierMap = [NSMutableDictionary dictionary];
+        
+        _notificationCenter = [[NSNotificationCenter alloc] init];
     }
     
     return self;
@@ -201,6 +206,43 @@
         }
     }
     
+}
+
+@end
+
+@implementation GQModuleCenter (GQModuleCenterEventObserverSupport)
+
++ (void)postEventName:(NSString *)eventName updateValue:(id)updateValue
+{
+    NSNotificationCenter *notificationCenter = [[self sharedInstance] notificationCenter];
+    
+    [notificationCenter postNotificationName:eventName
+                                      object:nil
+                                    userInfo:updateValue ? @{GQModuleCenterEventUpdateValueKey : updateValue} : nil];
+}
+
++ (id)addObserverForEventName:(NSString *)eventName usingBlock:(void (^)(id updateValue))block
+{
+    NSNotificationCenter *notificationCenter = [[self sharedInstance] notificationCenter];
+    
+    return [notificationCenter addObserverForName:eventName
+                                           object:nil
+                                            queue:nil
+                                       usingBlock:^(NSNotification * _Nonnull note) {
+                                           
+                                           id updateValue = note.userInfo[GQModuleCenterEventUpdateValueKey];
+                                           
+                                           if (block) {
+                                               block(updateValue);
+                                           }
+                                       }];
+}
+
++ (void)removeObserver:(id)observer
+{
+    NSNotificationCenter *notificationCenter = [[self sharedInstance] notificationCenter];
+    
+    [notificationCenter removeObserver:observer];
 }
 
 @end
