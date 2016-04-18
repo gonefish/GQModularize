@@ -240,6 +240,10 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
 
 + (void)removeObserver:(id)observer
 {
+    if (observer == nil) {
+        return;
+    }
+    
     NSNotificationCenter *notificationCenter = [[self sharedInstance] notificationCenter];
     
     [notificationCenter removeObserver:observer];

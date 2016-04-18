@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GQModuleCenter (GQModuleCenterEventSupport)
 
-+ (void)postEventName:(NSString *)eventName updateValue:(id)updateValue;
++ (void)postEventName:(NSString *)eventName updateValue:(nullable id)updateValue;
 
 + (id <NSObject>)addObserverForEventName:(NSString *)eventName usingBlock:(void (^)(id updateValue))block;
 

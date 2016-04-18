@@ -121,4 +121,64 @@
     XCTAssertEqual([[[GQModuleCenter sharedInstance] middlewareMap] count], 0);
 }
 
+- (void)testPostEventNameUpdateValue
+{
+    NSNotificationCenter *notificationCenter = [[GQModuleCenter sharedInstance] notificationCenter];
+    
+    id observerMock = OCMObserverMock();
+    
+    [notificationCenter addMockObserver:observerMock name:@"testPostEventNameUpdateValue" object:nil];
+    
+    [[observerMock expect] notificationWithName:@"testPostEventNameUpdateValue" object:nil userInfo:nil];
+    
+    [GQModuleCenter postEventName:@"testPostEventNameUpdateValue" updateValue:nil];
+    
+    [observerMock verify];
+}
+
+- (void)testPostEventNameUpdateValue2
+{
+    NSNotificationCenter *notificationCenter = [[GQModuleCenter sharedInstance] notificationCenter];
+    
+    id observerMock = OCMObserverMock();
+    
+    [notificationCenter addMockObserver:observerMock name:@"testPostEventNameUpdateValue2" object:nil];
+    
+    [[observerMock expect] notificationWithName:@"testPostEventNameUpdateValue2" object:nil userInfo:@{@"GQModuleCenterEventUpdateValueKey" : @"Testing"}];
+    
+    [GQModuleCenter postEventName:@"testPostEventNameUpdateValue2" updateValue:@"Testing"];
+    
+    [observerMock verify];
+}
+
+- (void)testAddObserverForEventNameUsingBlock
+{
+    __block NSString *val = nil;
+    
+    id observer = [GQModuleCenter addObserverForEventName:@"testAddObserverForEventNameUsingBlock"
+                                               usingBlock:^(id _Nonnull updateValue) {
+                                                   val = updateValue;
+                                               }];
+    
+    [GQModuleCenter postEventName:@"testAddObserverForEventNameUsingBlock"
+                      updateValue:@"Testing"];
+    
+    XCTAssertEqual(val, @"Testing");
+    
+    [GQModuleCenter removeObserver:observer];
+}
+
+- (void)testRemoveObserver
+{
+    id notificationCenterMock = OCMClassMock([NSNotificationCenter class]);
+    
+    [[GQModuleCenter sharedInstance] setNotificationCenter:notificationCenterMock];
+    
+    NSObject *observer = [[NSObject alloc] init];
+    
+    [GQModuleCenter removeObserver:observer];
+    
+    OCMVerify([notificationCenterMock removeObserver:observer]);
+}
+
 @end
