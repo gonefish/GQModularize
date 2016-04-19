@@ -79,28 +79,13 @@ static NSMutableDictionary *_sharedModules = nil;
 
 + (GQModuleResponse *)invokeWithIdentifier:(NSString *)identifier options:(NSDictionary *)options
 {
-    GQModuleResponse *response = nil;
-    
     GQModule *currentModule = [self currentModule];
     
-    if ([[self supportActionIdentifiers] containsObject:identifier]) {
-        // 内部处理
-        
-        id rel = [currentModule performActionWithIdentifier:identifier
-                                                    options:options];
-        
-        if (rel) {
-            response = [[GQModuleResponse alloc] initWithObject:rel module:currentModule];
-        }
-    } else {
-        // 外部处理
-        
-        GQModuleRequest *request = [[GQModuleRequest alloc] initWithIdentifier:identifier
-                                                                       options:options
-                                                                        module:currentModule];
-        
-        response = [GQModuleCenter invokeWithRequest:request];
-    }
+    GQModuleRequest *request = [[GQModuleRequest alloc] initWithIdentifier:identifier
+                                                                   options:options
+                                                                    module:currentModule];
+    
+    GQModuleResponse *response = [GQModuleCenter invokeWithRequest:request];
     
     return response;
 }

@@ -34,7 +34,7 @@ extern NSString * const GQModulePortalViewControllerIdentifier;
 
 @end
 
-@interface GQModule (GQModuleAction)
+@interface GQModule (GQModuleDefaultAction)
 
 - (UIViewController *)portalViewControllerWithOptions:(nullable NSDictionary *)options;
 
