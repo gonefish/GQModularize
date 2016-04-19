@@ -87,6 +87,18 @@ static NSMutableDictionary *_sharedModules = nil;
     
     GQModuleResponse *response = [GQModuleCenter invokeWithRequest:request];
     
+    // 调用失败时 尝试内部调用
+    if (response.originalObject == nil
+        && response.module == nil) {
+        
+        id rel = [currentModule performActionWithIdentifier:identifier
+                                                    options:options];
+        
+        if (rel) {
+            response = [[GQModuleResponse alloc] initWithObject:rel module:currentModule];
+        }
+    }
+    
     return response;
 }
 

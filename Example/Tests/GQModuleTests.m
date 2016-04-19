@@ -24,8 +24,10 @@
 {
     if ([identifier isEqualToString:GQModulePortalViewControllerIdentifier]) {
         return [UIViewController new];
-    } else {
+    } else if ([identifier isEqualToString:@"testInvokeWithIdentifierOptions"]) {
         return @"testInvokeWithIdentifierOptions";
+    } else {
+        return [NSNull null];
     }
 }
 
@@ -67,9 +69,13 @@
     
     XCTAssertTrue([resp isKindOfClass:[GQModuleResponse class]]);
     
+    XCTAssertTrue([resp gq_string]);
+    
     resp = [GQModuleTestsModule invokeWithIdentifier:@"Not Found"];
     
     XCTAssertTrue([resp isKindOfClass:[GQModuleResponse class]]);
+    
+    XCTAssertEqual([resp originalObject], [NSNull null]);
 }
 
 - (void)testPortalViewControllerWithOptions
