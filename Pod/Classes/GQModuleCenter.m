@@ -7,8 +7,12 @@
 //
 
 #import "GQModuleCenter.h"
+#import <pthread.h>
+
 #import "GQModule.h"
 #import "GQModuleMiddleware.h"
+
+static pthread_mutex_t _pthreadLock = PTHREAD_MUTEX_INITIALIZER;
 
 NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdateValueKey";
 
@@ -23,6 +27,7 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
 @property (nonatomic, strong) NSMutableDictionary *middlewareMap;
 
 @property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+
 
 @end
 
@@ -58,14 +63,16 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
 
 + (void)registerModuleWithClassName:(NSString *)name
 {
-    GQModuleCenter *sharedInstance = [self sharedInstance];
-    
     Class cls = NSClassFromString(name);
     
     // 不是GQModule的子类
     if (![cls isSubclassOfClass:[GQModule class]]) {
         return;
     }
+    
+    GQModuleCenter *sharedInstance = [self sharedInstance];
+    
+    pthread_mutex_lock(&_pthreadLock);
     
     if ([sharedInstance.moduleClassNames containsObject:name] == NO) {
         [sharedInstance.moduleClassNames addObject:name];
@@ -74,6 +81,8 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
             sharedInstance.moduleActionIdentifierMap[identifier] = name;
         }
     }
+    
+    pthread_mutex_unlock(&_pthreadLock);
 }
 
 + (void)unregisterModuleWithClassName:(NSString *)name
@@ -81,6 +90,8 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
     GQModuleCenter *sharedInstance = [self sharedInstance];
     
     NSMutableArray *removeKeys = [NSMutableArray array];
+    
+    pthread_mutex_lock(&_pthreadLock);
     
     [sharedInstance.moduleClassNames removeObject:name];
     
@@ -92,6 +103,8 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
     }
     
     [sharedInstance.moduleActionIdentifierMap removeObjectsForKeys:removeKeys];
+    
+    pthread_mutex_unlock(&_pthreadLock);
 }
 
 + (GQModuleResponse *)invokeWithRequest:(GQModuleRequest *)request
@@ -164,6 +177,8 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
     
     GQModuleCenter *sharedInstance = [self sharedInstance];
     
+    pthread_mutex_lock(&_pthreadLock);
+    
     id middleware = [sharedInstance.middlewareMap objectForKey:name];
     
     if (middleware == nil) {
@@ -173,11 +188,15 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
         
         [sharedInstance.middlewareMap setObject:middleware forKey:name];
     }
+    
+    pthread_mutex_unlock(&_pthreadLock);
 }
 
 + (void)unregisterMiddlewareWithClassName:(NSString *)name
 {
     GQModuleCenter *sharedInstance = [self sharedInstance];
+    
+    pthread_mutex_lock(&_pthreadLock);
     
     id middleware = [sharedInstance.middlewareMap objectForKey:name];
     
@@ -186,6 +205,8 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
         
         [sharedInstance.middlewareMap removeObjectForKey:name];
     }
+    
+    pthread_mutex_unlock(&_pthreadLock);
 }
 
 
