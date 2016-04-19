@@ -7,10 +7,33 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 
 #import <GQModularize/GQModule.h>
 
-@interface TestModule : GQModule
+@interface GQModuleTestsModule : GQModule @end
+
+@implementation GQModuleTestsModule
+
++ (NSArray<NSString *> *)supportActionIdentifiers
+{
+    return @[@"testInvokeWithIdentifierOptions"];
+}
+
+- (id)performActionWithIdentifier:(NSString *)identifier options:(nullable NSDictionary *)options
+{
+    if ([identifier isEqualToString:GQModulePortalViewControllerIdentifier]) {
+        return [UIViewController new];
+    } else {
+        return @"testInvokeWithIdentifierOptions";
+    }
+}
+
+@end
+
+@interface GQModuleTestsModuleB : GQModule @end
+
+@implementation GQModuleTestsModuleB
 
 @end
 
@@ -30,16 +53,32 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testCurrentModule
+{
+    XCTAssertEqual([GQModuleTestsModule currentModule], [GQModuleTestsModule currentModule]);
+    
+    XCTAssertEqual([GQModuleTestsModuleB currentModule], [GQModuleTestsModuleB currentModule]);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+
+- (void)testInvokeWithIdentifierOptions
+{
+    GQModuleResponse *resp = [GQModuleTestsModule invokeWithIdentifier:@"testInvokeWithIdentifierOptions"];
+    
+    XCTAssertTrue([resp isKindOfClass:[GQModuleResponse class]]);
+    
+    resp = [GQModuleTestsModule invokeWithIdentifier:@"Not Found"];
+    
+    XCTAssertTrue([resp isKindOfClass:[GQModuleResponse class]]);
 }
+
+- (void)testPortalViewControllerWithOptions
+{
+    UIViewController *vc = [[GQModuleTestsModule currentModule] portalViewControllerWithOptions:nil];
+    
+    XCTAssertNotNil(vc);
+    
+}
+
 
 @end
