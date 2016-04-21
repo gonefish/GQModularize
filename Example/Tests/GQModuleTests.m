@@ -57,11 +57,27 @@
 
 - (void)testCurrentModule
 {
+    XCTAssertNil([GQModule currentModule]);
+    
     XCTAssertEqual([GQModuleTestsModule currentModule], [GQModuleTestsModule currentModule]);
     
     XCTAssertEqual([GQModuleTestsModuleB currentModule], [GQModuleTestsModuleB currentModule]);
 }
 
+
+- (void)testModuleDictionary
+{
+    XCTAssertNotNil([[GQModuleTestsModule currentModule] moduleDictionary]);
+}
+
+- (void)testInvokeWithIdentifier
+{
+    id mock = OCMClassMock([GQModuleTestsModule class]);
+    
+    [GQModuleTestsModule invokeWithIdentifier:@"testInvokeWithIdentifier"];
+    
+    OCMVerify([mock invokeWithIdentifier:@"testInvokeWithIdentifier" options:nil]);
+}
 
 - (void)testInvokeWithIdentifierOptions
 {
@@ -80,10 +96,11 @@
 
 - (void)testPortalViewControllerWithOptions
 {
-    UIViewController *vc = [[GQModuleTestsModule currentModule] portalViewControllerWithOptions:nil];
+    id mock = OCMPartialMock([GQModuleTestsModule currentModule]);
     
-    XCTAssertNotNil(vc);
+    [mock portalViewControllerWithOptions:nil];
     
+    OCMVerify([mock performActionWithIdentifier:GQModulePortalViewControllerIdentifier options:nil]);
 }
 
 

@@ -226,7 +226,6 @@ NSString * const GQModuleCenterEventUpdateValueKey = @"GQModuleCenterEventUpdate
             }
         }
     }
-    
 }
 
 @end

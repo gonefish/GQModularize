@@ -45,7 +45,7 @@ static NSMutableDictionary *_sharedModules = nil;
     }
 }
 
-+ (NSArray *)supportActionIdentifiers
++ (NSArray<NSString *> *)supportActionIdentifiers
 {
     return @[];
 }
