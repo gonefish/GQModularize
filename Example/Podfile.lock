@@ -1,8 +1,8 @@
 PODS:
   - GQModularize (0.1.2)
-  - ModuleExampleList (0.0.9):
+  - ModuleExampleList (0.0.11):
     - GQModularize
-  - ModuleExampleSettings (0.0.5):
+  - ModuleExampleSettings (0.0.6):
     - GQModularize
   - OCMock (3.3)
 
@@ -18,8 +18,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   GQModularize: 67a36468682224fa7e4da3b94cd12d6416dad6fd
-  ModuleExampleList: 34b5fcb0563aea71ce515b35cf899ec3bdeb2244
-  ModuleExampleSettings: 1fc013bef7b39c2b388eefbafe02b2b4e01d029e
+  ModuleExampleList: 6cb2cf16aa65f72a9b126d21ff539269ce496357
+  ModuleExampleSettings: 568bd2980f6e8c922a0184aea70e3bf11d413bb1
   OCMock: d68685bde31f69cb61d518dcb39269080c78b5ed
 
 COCOAPODS: 0.39.0
