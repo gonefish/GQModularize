@@ -92,6 +92,9 @@
     XCTAssertTrue([resp isKindOfClass:[GQModuleResponse class]]);
     
     XCTAssertEqual([resp originalObject], [NSNull null]);
+    
+    XCTAssertEqual([resp module], [GQModuleTestsModule currentModule]);
+    
 }
 
 - (void)testPortalViewControllerWithOptions
