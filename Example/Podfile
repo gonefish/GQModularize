@@ -3,13 +3,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-target 'GQModularize_Example', :exclusive => true do
+target 'GQModularize_Example' do
   pod 'GQModularize', :path => '../'
   pod 'ModuleExampleList'
   pod 'ModuleExampleSettings'
 end
 
-target 'GQModularize_Tests', :exclusive => true do
+target 'GQModularize_Tests' do
   pod 'GQModularize', :path => '../'
   pod 'OCMock'
 end
